@@ -1,5 +1,6 @@
 import {register} from './chat-api';
 import Selector from "./Sprite/Selector"
+import Active from "./Sprite/Active-register"
 let spriteList = [];
 
 let background = null;
@@ -13,6 +14,7 @@ window.addEventListener("load", () => {
     document.querySelector("body").appendChild(background);
     
     spriteList.push(new Selector(background));
+    spriteList.push(new Active());
 
 
     window.requestAnimationFrame(tick);

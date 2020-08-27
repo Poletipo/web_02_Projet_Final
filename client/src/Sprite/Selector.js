@@ -10,6 +10,7 @@ export default class Selector{
         this.x = 4*48 ;//+ 4*16;
         this.y = 4*155;//+ 4*16;
         this.size = 64;
+        this.background = background;
 
         this.square = document.createElement("div");
         this.square.className = "selector";
@@ -25,7 +26,6 @@ export default class Selector{
             this.Write(key, this.selected);
         })
         
-        this.background = background;
         this.loopTime = 0;
         this.opacity = 1;
         this.index = 0;
@@ -48,7 +48,8 @@ export default class Selector{
             }
             this.loopTime = 0;
         }
-       
+        this.square.style.left = this.background.offsetLeft + this.x + "px";
+        this.square.style.top = this.y + "px";
         return alive;
     }
 
@@ -59,6 +60,7 @@ export default class Selector{
             key.which == 39||key.which == 40){
                 new Audio("./sound/menu_key_move.wav").play();
             }
+
         //up key
         if(key.which == 38){
             this.y -= 64;
@@ -120,13 +122,9 @@ export default class Selector{
             this.selected.value += this.letters[this.index];
             new Audio("./sound/menu_LetterEnter.wav").play();
         }
-        console.log(this.column, this.row, this.letters[this.index], this.index);
-        console.log(this.selected.tagName);
         
-        this.square.style.left = this.background.offsetLeft + this.x + "px";
-        this.square.style.top = this.y + "px";
+        
 
     }
-
 
 }
