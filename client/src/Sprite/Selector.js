@@ -9,11 +9,13 @@ export default class Selector{
 
         this.x = 4*48 ;//+ 4*16;
         this.y = 4*155;//+ 4*16;
-        this.size = 4*8;
-        
+        this.size = 64;
+
         this.square = document.createElement("div");
         this.square.className = "selector";
+
         document.querySelector("body").appendChild(this.square);
+
         this.square.style.top = this.y + "px";
         this.square.style.left = background.offsetLeft + this.x + "px";
 
@@ -27,7 +29,6 @@ export default class Selector{
         this.loopTime = 0;
         this.opacity = 1;
         this.index = 0;
-        this.row = 0;
         this.column = 0;
     }
     
@@ -54,9 +55,13 @@ export default class Selector{
 
     Write(key){
 
+        if(key.which == 37 || key.which == 38||
+            key.which == 39||key.which == 40){
+                new Audio("./sound/menu_key_move.wav").play();
+            }
         //up key
         if(key.which == 38){
-            this.y -= 4*16;
+            this.y -= 64;
             this.index -= 11;
             if(this.letters[this.index] == null){
                 this.y = 4*155 +(4*48);
@@ -65,7 +70,7 @@ export default class Selector{
         }
         //down key
         if(key.which == 40){
-            this.y += 4*16;
+            this.y += 64;
             this.index += 11;
             if(this.letters[this.index] == null){
                 this.y = 4*155;
@@ -74,7 +79,7 @@ export default class Selector{
         }
         //left key
         if(key.which == 37){
-            this.x -= (4*16);
+            this.x -= 64;
             this.index--;
             this.column--;
             if(this.column < 0){
@@ -111,11 +116,12 @@ export default class Selector{
             this.row = 0; 
         }
         
-        if(key.which == 17){
+        if(key.which == 17 && this.selected.tagName == "INPUT"){
             this.selected.value += this.letters[this.index];
+            new Audio("./sound/menu_LetterEnter.wav").play();
         }
         console.log(this.column, this.row, this.letters[this.index], this.index);
-        console.log(key.which);
+        console.log(this.selected.tagName);
         
         this.square.style.left = this.background.offsetLeft + this.x + "px";
         this.square.style.top = this.y + "px";
