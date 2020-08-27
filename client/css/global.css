@@ -8,30 +8,25 @@
 @font-face {
     font-family: "Open Sans";
     src: url("../img/PressStart2P-Regular.ttf") format("truetype");
-  }
+}
 
-.index-body{
+body{
+    background-color: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
 }
+
+/*---------------INDEX---------------*/
 
 .index-form{
     position: absolute;
     margin-top: 550px;
 }
 
-.index-register{
-    position: absolute;
-    margin-top: 675px;
-    text-transform: uppercase;
-    font-size: 16px;
-    padding-left: 380px;
-}
-
 .index-input{
-    width: 250px;
+    width: 225px;
     height: 40px;
-    border: 4px solid rgb(97, 171, 240);
+    border: 4px solid #5c94fc;
     background-color: white ;
     font-size: 16px;
     padding-left: 10px;
@@ -43,10 +38,73 @@
     font-size: 16px;
     padding: 0px 10px;   
     border: 4px solid black;
-    background-color: rgb(204, 204, 204);
+    background-color: #bcbcbc;
     text-transform: uppercase;
 }
 
 .index-button:hover{
     background-color: grey;
+}
+
+.index-register{
+    position: absolute;
+    margin-top: 675px;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-left: 380px;
+}
+
+.index-register:visited{
+    color: #c84c0c;
+}
+
+/*--------------REGISTER-----------*/
+
+.input-register{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 146px;
+    width:1024px;
+}
+
+.input-register input{
+    border: 4px solid white;
+    background-color: black;
+    color: white;
+    width: 300px;
+    height: 32px;
+    margin-left: 48%;
+    margin-bottom: 14px;
+    margin-top: 14px;
+    font-size: 16px;
+    padding-left: 8px;
+}
+
+.register-button{
+    font-size: 32px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0) ;
+    width: 270px;
+    border: none;
+    margin-left: 187px;
+}
+.register-button:hover{
+    color: #2038ec;
+}
+
+.register-overlay{
+    width: 1024px ;
+    height: 896px;
+    background-size: 1024px 896px;
+    image-rendering: pixelated;
+    background-image: url("../img/NES - The Legend of Zelda - Register.png");
+}
+
+.selector{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: #e40058;
+    z-index: -1;
 }
