@@ -9,10 +9,19 @@
         <link rel="icon" href="img/favicon.png" type="image/png" />
     </head>
     <body>
-        <a href="javascript:void(0)" id="sign-out-btn">Déconnexion</a>
-
-        <div>
-            <textarea cols="30" rows="10"></textarea>
+        <canvas width="1024" height="896" id="canvas">
+            I am the invisible man!
+        </canvas>
+        <a class="chat-disconect" href="javascript:void(0)" id="sign-out-btn">DISCONNECT</a>
+        <div class="chat-write">
+            <textarea placeholder="CHAT HERE" cols="30" rows="10"></textarea>
         </div>
+
+        <div class="chat" id="chat-container">
+            <template id="chat-template">
+                <h4></h4>
+                <p></p>
+            </template>
+        </div>  
     </body>
 </html>

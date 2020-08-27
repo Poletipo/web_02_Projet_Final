@@ -19,8 +19,10 @@ window.addEventListener("load", () => {
 
     window.requestAnimationFrame(tick);
 })
+
 let lastTime = 0;
 let deltaTick = 0;
+
 const tick = timeSpan =>{
     deltaTick =  (timeSpan - lastTime) / 1000;
     lastTime = timeSpan;
@@ -34,9 +36,6 @@ const tick = timeSpan =>{
             i--;
         }
     }
-    //console.log(deltaTick);
-
-
 
     window.requestAnimationFrame(tick);
 }
