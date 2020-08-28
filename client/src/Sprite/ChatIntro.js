@@ -4,7 +4,7 @@ export default class ChatIntro{
         this.ctx = ctx;
         this.canvas = canvas;
         this.name = "ChatIntro";
-        
+
         this.oldMan = new Image();
         this.oldMan.src = "./img/NES - The Legend of Zelda - OldMan.png"
 
@@ -28,9 +28,6 @@ export default class ChatIntro{
         this.countForText = 0;
         this.textLoop = 0;
     }
-    
-    
-    
     
     tick(deltatick){
         let alive = true;
