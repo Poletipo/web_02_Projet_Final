@@ -5,7 +5,7 @@ export default class Transition{
         document.querySelector("body").appendChild(this.black);
         this.alive = true;
         this.time = time;
-        setTimeout(()=>{this.alive = false; console.log("Doot");}, this.time);
+        setTimeout(()=>{this.alive = false;}, this.time);
     }
 
     tick(){

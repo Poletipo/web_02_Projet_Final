@@ -2,6 +2,7 @@ import {registerCallbacks, sendMessage, signout, chatMessageLoop} from './chat-a
 import ChatIntro from "./Sprite/ChatIntro";
 import Transition from "./Sprite/Transition"
 import Link from './Sprite/Link';
+import Monster from './Sprite/Monster';
 
 let spriteList = [];
 
@@ -30,7 +31,7 @@ window.addEventListener("load", () => {
     ctx.imageSmoothingEnabled = false;
     
     spriteList.push(new ChatIntro(ctx, canvas));
-
+    
 
     window.requestAnimationFrame(tick);
 })
@@ -56,11 +57,43 @@ const newMessage = (fromUser, message, isPrivate) => {
 // À chaque 2-3 secondes, cette fonction est appelée. Il faudra donc mettre à jour la liste des membres
 // connectés dans votre interface.
 const memberListUpdate = members => {
-    //console.log(members);
+    
+    if(OnlyOnce){
+        for(let i = 0; i < members.length ; i++){
+            let disconected = true;
+            let existingName = false;
+            for(let j = 0; j < spriteList.length ; j++){
+                    if(members[i] == spriteList[j].PlayerName){
+                        existingName = true;
+                    }
+                    
+                    if(spriteList[j].PlayerName != null){
+                        for(let k = 0;k< members.length ; k++){
+                            if(spriteList[j].PlayerName == members[k]){
+                                disconected = false;
+                            }
+                        }
+                    }else{
+                        disconected = false;
+                    }
+                    if(disconected){
+                        console.log(spriteList[j].PlayerName);
+                        spriteList.splice(j, 1);
+                        j--;   
+                    }
+                }
+                
+                if(!existingName){
+                    console.log(members[i]);
+                    spriteList.push(new Monster(members[i], ctx, canvas));
+                }
+        }
+    }
 }
 
 let lastTime = 0;
 let deltaTick = 0;
+let OnlyOnce = false;
 
 const tick = timeSpan =>{
     deltaTick =  (timeSpan - lastTime) / 1000;
@@ -68,18 +101,22 @@ const tick = timeSpan =>{
 
     ctx.drawImage(background,0,0, 1024, 896);
     
-    if(introDone){
+    if(introDone && !OnlyOnce){
         spriteList.push(new Transition(500));
         background.src = "./img/NES - The Legend of Zelda - FirstLevel.png"
         spriteList.push(new Link(288,400, ctx, 0));
 
-        let music = new Audio("./sound/02 - Overworld.mp3");
+        /*let music = new Audio("./sound/02 - Overworld.mp3");
         music.addEventListener("ended", () =>{
         music.currentTime = 0;
         music.play();
     })
-    music.play();
+    music.play();*/
         introDone = false;
+        OnlyOnce = true;
+
+
+
     }
 
     for (let i = 0; i < spriteList.length; i++) {

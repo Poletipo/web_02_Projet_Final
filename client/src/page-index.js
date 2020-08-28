@@ -67,7 +67,7 @@ const tick = timeSpan =>{
     
 
     introCountdown += deltaTick; 
-    if(introCountdown > 5 && !inCutScene){
+    if(introCountdown > 10 && !inCutScene){
         inCutScene = true;
         transition = new Transition(999999); 
         FadeToBlack(0, 0.6);
@@ -115,7 +115,7 @@ const FadeToBlack = (op, limit) =>{
         setTimeout(() =>{FadeToBlack(op, 1);}, 1000);
     }
 
-    if(op > 1){
+    if(op > 1 && inCutScene){
         story = new Story(canvas);
     }
 
