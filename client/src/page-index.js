@@ -1,9 +1,13 @@
 import {signin} from './chat-api';
+import Chute from './Sprite/Chute';
+import {TiledImage} from "./TiledImage"
+
+let spriteList = [];
 
 let titleScreen = new Image();
 let canvas = null;
 let ctx = null;
-
+let chuteTop = null;
 
 window.addEventListener("load", () => {
     document.querySelector("form").onsubmit = function () {
@@ -18,18 +22,50 @@ window.addEventListener("load", () => {
     ctx.mozImageSmoothingEnabled = false;
     ctx.imageSmoothingEnabled = false;
     
-    console.log("doot");
+    chuteTop = new TiledImage("./img/NES - The Legend of Zelda - ChuteTop.png",
+    2, 1, 150, true, 4);
+    chuteTop.setPaused(false);
+
+    ChuteAnim();
     
-    
+    let music = new Audio("./sound/01 - Intro.mp3");
+    music.addEventListener("ended", () =>{
+        music.currentTime = 0;
+        music.play();
+    })
+    music.play();
+
     window.requestAnimationFrame(tick);
 });
 
 
-const tick = evt =>{
+let lastTime = 0;
+let deltaTick = 0;
+
+const tick = timeSpan =>{
+    deltaTick =  (timeSpan - lastTime) / 1000;
+    lastTime = timeSpan;
+    
     if(titleScreen.complete){
         ctx.drawImage(titleScreen,0,0, canvas.width, canvas.height);
     }
+    chuteTop.tick(384, 688, ctx);
     
+    for (let i = 0; i < spriteList.length; i++) {
+        const element = spriteList[i];
+        let alive = element.tick(deltaTick);
+        
+        if (!alive) {
+            spriteList.splice(i, 1);
+            i--;
+        }
+    }
     
     window.requestAnimationFrame(tick);
+}
+
+const ChuteAnim = () =>{
+    spriteList.push(new Chute(384, 720, ctx, canvas));
+    setTimeout(ChuteAnim, 150);
+    
 }

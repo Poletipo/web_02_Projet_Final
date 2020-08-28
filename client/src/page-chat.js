@@ -72,6 +72,13 @@ const tick = timeSpan =>{
         spriteList.push(new Transition(500));
         background.src = "./img/NES - The Legend of Zelda - FirstLevel.png"
         spriteList.push(new Link(288,400, ctx, 0));
+
+        let music = new Audio("./sound/02 - Overworld.mp3");
+        music.addEventListener("ended", () =>{
+        music.currentTime = 0;
+        music.play();
+    })
+    music.play();
         introDone = false;
     }
 
