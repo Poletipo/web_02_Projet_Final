@@ -3,6 +3,7 @@ import ChatIntro from "./Sprite/ChatIntro";
 import Transition from "./Sprite/Transition"
 import Link from './Sprite/Link';
 import Monster from './Sprite/Monster';
+import Collision from './Sprite/Collision';
 
 let spriteList = [];
 
@@ -31,6 +32,18 @@ window.addEventListener("load", () => {
     ctx.imageSmoothingEnabled = false;
     
     spriteList.push(new ChatIntro(ctx, canvas));
+    spriteList.push(new Collision(576, 224, 500, 320,ctx));
+    
+    spriteList.push(new Collision(0, 224, 64, 1000,ctx));
+    spriteList.push(new Collision(0, 224, 1000, 64,ctx));
+    spriteList.push(new Collision(0, 780, 1200, 224,ctx));
+    spriteList.push(new Collision(900, 224, 128, 1000,ctx));
+    
+    spriteList.push(new Collision(0, 224, 448, 128,ctx));
+    spriteList.push(new Collision(192, 224, 66, 128+64,ctx));
+    spriteList.push(new Collision(192-64, 224, 66, 128+128,ctx));
+    spriteList.push(new Collision(0, 224, 66+64, 1000,ctx));
+    //spriteList.push(new Collision(0, 632, 66+64, 500,ctx));
     
 
     window.requestAnimationFrame(tick);
@@ -83,7 +96,6 @@ const memberListUpdate = members => {
                 }
                 
                 if(!existingName){
-                    //console.log(members[i]);
                     spriteList.push(new Monster(members[i], ctx, canvas));
                 }
         }
@@ -103,7 +115,7 @@ const tick = timeSpan =>{
     if(introDone && !OnlyOnce){
         spriteList.push(new Transition(500));
         background.src = "./img/NES - The Legend of Zelda - FirstLevel.png"
-        spriteList.push(new Link(288,400, ctx, 0));
+        spriteList.push(new Link(288,400, ctx, 0, spriteList));
 
         /*let music = new Audio("./sound/02 - Overworld.mp3");
         music.addEventListener("ended", () =>{

@@ -1,10 +1,11 @@
 import {TiledImage} from "../TiledImage"
 export default class Link{
-    constructor(x, y, ctx, currentRow){
+    constructor(x, y, ctx, currentRow, spriteList){
         this.x = x;
         this.y = y;
         this.speed = 4;
         this.ctx = ctx;
+        this.spriteList = spriteList;
 
         this.inputEnabled = true;
 
@@ -38,7 +39,35 @@ export default class Link{
     
     tick(deltaTick){
         let alive = true;
-        
+        for(let i = 0; i< this.spriteList.length; i++){
+            if(this.spriteList[i].tag == "collision"){
+                if( (this.y > this.spriteList[i].y && this.y < this.spriteList[i].y + this.spriteList[i].height) || 
+                    (this.y < this.spriteList[i].y + this.spriteList[i].height && this.y > this.spriteList[i].y)){
+                        if(this.x + 5 >= this.spriteList[i].x && 
+                            this.x  < this.spriteList[i].x){
+                                this.rightArrowOn = false;
+                            }
+                            if(this.x  <= (this.spriteList[i].x + this.spriteList[i].width) &&
+                            this.x + 5 > (this.spriteList[i].x + this.spriteList[i].width)){
+                                this.leftArrowOn = false;
+                            }
+                            
+                        }
+                    }
+                    if((this.x > this.spriteList[i].x && this.x < this.spriteList[i].x + this.spriteList[i].width) || 
+                    (this.x < this.spriteList[i].x + this.spriteList[i].width && this.x> this.spriteList[i].x))
+                    {
+                        console.log("doot");
+                    if(this.y >= this.spriteList[i].y && 
+                        this.y -5 < this.spriteList[i].y ){
+                            this.downArrowOn = false;
+                        }if(this.y < this.spriteList[i].y + this.spriteList[i].height && 
+                            this.y + 5> this.spriteList[i].y + this.spriteList[i].height ){
+                                this.upArrowOn = false; 
+                        }
+                }
+        }
+
         if (this.rightArrowOn) {
 			this.sprite.changeRow(1);
             this.sprite.setFlipped(false);
@@ -59,6 +88,15 @@ export default class Link{
 			this.sprite.setFlipped(false);
 			this.y+=(this.speed * deltaTick * 100);
 		}
+
+
+
+        
+
+
+
+
+
 
 		if (!this.rightArrowOn && !this.leftArrowOn && !this.downArrowOn && !this.upArrowOn) {
 			this.sprite.setPaused(true);

@@ -19,7 +19,7 @@ export default class ChatIntro{
 
         this.swordTaken = false;
 
-        this.link = new Link(this.canvas.width/2, this.canvas.height - 32, this.ctx,2);
+        this.link = new Link(this.canvas.width/2, this.canvas.height - 32, this.ctx,2, []);
         this.link.inputEnabled = false;
 
         this.text = "IT'S DANGEROUS TO GO ALONE! TAKE THIS.";
