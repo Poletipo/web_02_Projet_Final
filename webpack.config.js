@@ -6,7 +6,7 @@ module.exports = {
     chat : './client/src/page-chat.js',
     register : './client/src/page-register.js'
   },
-  mode: 'development',
+  mode: 'production',
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'client/dist'),
