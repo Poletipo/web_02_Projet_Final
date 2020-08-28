@@ -5,6 +5,7 @@ export default class Chute{
         this.x = x;
         this.y = y;
         this.ctx = ctx;
+        this.canvas = canvas;
         this.speed = 4;
         let columnCount = 3;
 		let rowCount = 1;
@@ -28,7 +29,7 @@ export default class Chute{
 
         this.sprite.tick(this.x, this.y,this.ctx);
 
-        if(this.y == canvas.height + 64){
+        if(this.y > this.canvas.height + 64){
             alive = false;
         }
         return alive;

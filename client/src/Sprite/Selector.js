@@ -7,8 +7,8 @@ export default class Selector{
                     , 'W', 'X', 'Y', 'Z', '-', '.', ',', '!', '\'', '&', '.'
                     , '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '];
 
-        this.x = 4*48 ;//+ 4*16;
-        this.y = 4*155;//+ 4*16;
+        this.x = 4*48 ;
+        this.y = 4*155;
         this.size = 64;
         this.background = background;
 

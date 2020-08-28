@@ -9,15 +9,10 @@ export default class Transition{
     }
 
     tick(){
-
-
         if(!this.alive){
             this.black.remove();
         }
         
         return this.alive;
     }
-
-
-
 }

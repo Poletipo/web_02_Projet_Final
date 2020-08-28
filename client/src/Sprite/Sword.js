@@ -72,6 +72,7 @@ export default class Sword{
                     spriteList.push(new Flash(this.x, this.y, 1, -1, this.ctx));
                     spriteList.push(new Flash(this.x, this.y, 1, 1, this.ctx));
         }
+        
         return alive;
     }
 }

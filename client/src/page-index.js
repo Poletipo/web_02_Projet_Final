@@ -65,7 +65,6 @@ const tick = timeSpan =>{
     deltaTick =  (timeSpan - lastTime) / 1000;
     lastTime = timeSpan;
     
-
     introCountdown += deltaTick; 
     if(introCountdown > 10 && !inCutScene){
         inCutScene = true;

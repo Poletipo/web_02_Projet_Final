@@ -6,9 +6,9 @@ export default class Collision{
         this.height = height;
         this.tag = "collision";
 
+        this.visible = false;
+        
         this.ctx = ctx;
-
-
 
     }
 
@@ -17,8 +17,10 @@ export default class Collision{
     tick(){
         let alive = true;
         
-        //this.ctx.fillStyle = "white";
-        //this.ctx.fillRect(this.x, this.y, this.width, this.height);
+        if(this.visble){
+            this.ctx.fillStyle = "white";
+            this.ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
 
         return alive;
     }

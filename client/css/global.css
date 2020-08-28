@@ -138,9 +138,6 @@ body{
 
 #api-message{
     position: absolute;
-    color: white;
-    margin-top: 568px;
-    margin-left: 500px;
     font-size: 16px;
     color: #e40058;
 }

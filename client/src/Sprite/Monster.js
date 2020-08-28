@@ -35,8 +35,6 @@ export default class Monster{
         columnCount, rowCount, refreshDelay , loopColumn, scale);
         this.sprite.setPaused(false);
 
-
-        setTimeout(this.Jump, this.time);
     }
 
     tick(deltaTick){
@@ -81,21 +79,5 @@ export default class Monster{
 
         return this.alive;
     }
-
-    StopJumping(){
-        this.jumping = false;
-        
-        console.log("fuck");
-        setTimeout(this.Jump, this.time);
-    }
-
-    Jump(){
-        this.jumping = true;
-        this.time = Math.random() * 100 + 50;
-        
-        setTimeout(this.StopJumping, this.time);
-    }
     
-
-
 }

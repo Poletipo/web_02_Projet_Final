@@ -1,52 +1,30 @@
 # Chat client
 
-## Pré-requis
+## Gestion d'évenements
 
-- Avoir nodejs d'installé sur votre machine. Pour savoir si vous l'avez installé, exécutez dans un terminal:
+- Sur la page index, si on click ou que l'on appuie sur une touche du clavier lorsque l'intro qui raconte l'histoire joue, 
+	l'animatique s'arrête.
+	
+- Sur la page pour s'enregister, en utilisant les fleches, on peux bouger le curseur. Aussi, En utilisant la touche "ctrl", 
+	On peux entrer la lettre dans le champ actif.
+	
+- Sur la page du Chat, après l'intro, on peux faire bouger le personnage avec les fleches, et on peux lancer son épée avec
+	la touche "ctrl".
 
-````
-node -v
-````
-Si cela vous retourne une version, alors nodejs est bien installé.
+## Animations quelconques
 
-## Installation du projet
+- Sur la page index, les vagues de la chute qui tombe.
 
-Suite à l'installation de nodejs, il faut ouvrir un terminal dans le répertoire du projet, puis exécuter cette commande : 
+- Sur la page d'enregistrement, le curseur qui clignote.
 
-````
-npm install
-````
-Cela installera les librairies nécessaires au fonctionnement interne du chat.
+- Sur la page du Chat, les ennemies qui sautent.
 
-## Démarrer votre proejt
+## Séquences d'actions
 
-Pour travailler sur votre projet, vous aurez besoin de démarrer le *backend* + *frontend*.
+- Sur la page index, lorsqu'on ne click rien ou  on ne touche à aucune touche durant 10 secondes, alors il y a un fondu au noir, 
+	et par la suite, l'histoire monte tranquille dans l'écran.
+	
+- Sur la page du Chat, il y a une petite cinématique d'intro donnant l'épée au personnage pour combattre les méchants monstres du Chat!
 
-### Backend
-Pour démarrer le *backend* de votre projet, faire :
-
-````
-npm run start
-````
-
-Pour accéder au client dans votre navigateur, allez à : [http://localhost:3000]
-
-### Frontend
-Pour démarrer la reconstruction du front-end, ouvrez un deuxième terminal, puis...
-
-````
-npm run webpack
-````
-
-Lorsque webpack est actif, votre JavaScript se regénère automatiquement lorsqu'un fichier est modifié. Par exemple, si vous modifiez le fichier "client/src/page-index.js" (ou n'importe quel fichier utilisé dans celui-ci), webpack mettra à jour le fichier "client/dist/index.js" avec vos modifications.
-
-
-## Et ensuite?...
-
-Pour ce projet, ne travaillez que dans le dossier `client/`. Vous pouvez modifier tous les fichiers qui s'y trouvent, mais il est fortement déconseillé d'altérer les lignes de code déjà en place, car il est 100% fonctionnel avec le serveur de chat. Ajoutez des lignes, créez des fichiers et images, mais attention de ne pas *briser* l'accès au serveur (connexion, déconnexion, etc.).
-
-Toutes les informations nécessaires à la réalisation du projet se trouvent ici : [https://notes-de-cours.com/webjs/travaux]
-
-## Remise du projet
-
-Pour remettre votre projet, zippez-le, puis envoyez-moi le par mio.
+- Sur la page du Chat, lorsque que l'on lance l'épée avec "ctrl", l'épée part en direction que le personnage fais face, et lorsque l'épée 
+	atteint un ennemi, ou les limites du terrain, il y a une explosion de flash lumineux, qui disparait apres un certain temps.
