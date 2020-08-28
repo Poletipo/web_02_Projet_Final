@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
     canvas = document.querySelector("canvas");
     ctx = canvas.getContext("2d");
     titleScreen.src = "./img/NES - The Legend of Zelda - Title Screen.png";
-    //titleScreen.width = 1920 + "px";
+
     ctx.webkitImageSmoothingEnabled = false;
     ctx.mozImageSmoothingEnabled = false;
     ctx.imageSmoothingEnabled = false;
@@ -42,12 +42,12 @@ window.addEventListener("load", () => {
     
     ChuteAnim();
     
-    /*let music = new Audio("./sound/01 - Intro.mp3");
+    let music = new Audio("./sound/01 - Intro.mp3");
     music.addEventListener("ended", () =>{
         music.currentTime = 0;
         music.play();
     })
-    music.play();*/
+    music.play();
 
     window.addEventListener("keypress",ResetStory)
     window.addEventListener("click",ResetStory)

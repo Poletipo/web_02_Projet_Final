@@ -4,6 +4,9 @@ export default class Monster{
         this.x = Math.random() * 800 +128;
         this.y =  Math.random() * 500 + 300;
         this.PlayerName  = name;
+
+        this.tag = "Monster";
+
         this.time = Math.random() * 1000; 
         this.ctx = ctx;
         this.alive = true;
@@ -22,8 +25,13 @@ export default class Monster{
 		let refreshDelay = 300;
 		let scale = 4;
         let loopColumn = true;
+
+        this.image = "./img/NES - The Legend of Zelda - Ennemies.png";
+        if(Math.random() < 0.5){
+            this.image = "./img/NES - The Legend of Zelda - Ennemies_02.png";
+        }
         
-        this.sprite = new TiledImage("./img/NES - The Legend of Zelda - Ennemies.png",
+        this.sprite = new TiledImage(this.image,
         columnCount, rowCount, refreshDelay , loopColumn, scale);
         this.sprite.setPaused(false);
 

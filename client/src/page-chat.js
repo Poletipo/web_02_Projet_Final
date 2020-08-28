@@ -32,6 +32,7 @@ window.addEventListener("load", () => {
     ctx.imageSmoothingEnabled = false;
     
     spriteList.push(new ChatIntro(ctx, canvas));
+
     spriteList.push(new Collision(576, 224, 500, 320,ctx));
     
     spriteList.push(new Collision(0, 224, 64, 1000,ctx));
@@ -43,7 +44,6 @@ window.addEventListener("load", () => {
     spriteList.push(new Collision(192, 224, 66, 128+64,ctx));
     spriteList.push(new Collision(192-64, 224, 66, 128+128,ctx));
     spriteList.push(new Collision(0, 224, 66+64, 1000,ctx));
-    //spriteList.push(new Collision(0, 632, 66+64, 500,ctx));
     
 
     window.requestAnimationFrame(tick);
@@ -117,12 +117,12 @@ const tick = timeSpan =>{
         background.src = "./img/NES - The Legend of Zelda - FirstLevel.png"
         spriteList.push(new Link(288,400, ctx, 0, spriteList));
 
-        /*let music = new Audio("./sound/02 - Overworld.mp3");
+        let music = new Audio("./sound/02 - Overworld.mp3");
         music.addEventListener("ended", () =>{
         music.currentTime = 0;
         music.play();
     })
-    music.play();*/
+    music.play();
         introDone = false;
         OnlyOnce = true;
 
@@ -132,7 +132,7 @@ const tick = timeSpan =>{
 
     for (let i = 0; i < spriteList.length; i++) {
         const element = spriteList[i];
-        let alive = element.tick(deltaTick);
+        let alive = element.tick(deltaTick, spriteList);
     
         if(spriteList[i].name == "ChatIntro" && !alive){
             introDone = true;

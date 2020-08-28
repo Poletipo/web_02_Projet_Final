@@ -1,4 +1,5 @@
 import {TiledImage} from "../TiledImage"
+import Sword from "./Sword";
 export default class Link{
     constructor(x, y, ctx, currentRow, spriteList){
         this.x = x;
@@ -7,6 +8,7 @@ export default class Link{
         this.ctx = ctx;
         this.spriteList = spriteList;
 
+        this.direction = 2;
         this.inputEnabled = true;
 
         let columnCount = 2;
@@ -39,7 +41,9 @@ export default class Link{
     
     tick(deltaTick){
         let alive = true;
-        for(let i = 0; i< this.spriteList.length; i++){
+
+
+        for(let i = 0; i < this.spriteList.length; i++){
             if(this.spriteList[i].tag == "collision"){
                 if( (this.y > this.spriteList[i].y && this.y < this.spriteList[i].y + this.spriteList[i].height) || 
                     (this.y < this.spriteList[i].y + this.spriteList[i].height && this.y > this.spriteList[i].y)){
@@ -57,7 +61,6 @@ export default class Link{
                     if((this.x > this.spriteList[i].x && this.x < this.spriteList[i].x + this.spriteList[i].width) || 
                     (this.x < this.spriteList[i].x + this.spriteList[i].width && this.x> this.spriteList[i].x))
                     {
-                        console.log("doot");
                     if(this.y >= this.spriteList[i].y && 
                         this.y -5 < this.spriteList[i].y ){
                             this.downArrowOn = false;
@@ -87,17 +90,8 @@ export default class Link{
 			this.sprite.changeRow(0);
 			this.sprite.setFlipped(false);
 			this.y+=(this.speed * deltaTick * 100);
-		}
-
-
-
+        }
         
-
-
-
-
-
-
 		if (!this.rightArrowOn && !this.leftArrowOn && !this.downArrowOn && !this.upArrowOn) {
 			this.sprite.setPaused(true);
 		}
@@ -137,12 +131,16 @@ export default class Link{
             if(key.which == 37){
                 this.leftArrowOn = true;
 
+                this.direction = 3;
+
                 this.upArrowOn = false;
                 this.rightArrowOn = false;
                 this.downArrowOn = false;
             } 
             else if(key.which == 38){
                 this.upArrowOn = true;
+
+                this.direction = 0;
 
                 this.leftArrowOn = false;
                 this.rightArrowOn = false;
@@ -151,6 +149,8 @@ export default class Link{
             else if(key.which == 39){
                 this.rightArrowOn = true;
 
+                this.direction = 1;
+
                 this.leftArrowOn = false;
                 this.upArrowOn = false;
                 this.downArrowOn = false;
@@ -158,9 +158,16 @@ export default class Link{
             else if(key.which == 40){
                 this.downArrowOn = true;
 
+                this.direction = 2;
+
                 this.leftArrowOn = false;
                 this.upArrowOn = false;
                 this.rightArrowOn = false;
+            }
+
+            if(key.which == 17){
+                this.spriteList.push(new Sword(this.x, this.y, this.direction, this.ctx, this.spriteList));
+                new Audio("./sound/LOZ_Sword_Slash.wav").play();
             }
         }
     }
