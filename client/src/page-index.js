@@ -2,6 +2,7 @@ import {signin} from './chat-api';
 import Chute from './Sprite/Chute';
 import {TiledImage} from "./TiledImage"
 import Transition from './Sprite/Transition';
+import Story from './Sprite/Story';
 
 let spriteList = [];
 
@@ -9,10 +10,13 @@ let titleScreen = new Image();
 let canvas = null;
 let ctx = null;
 let chuteTop = null;
+let triforce = null;
 
 let introCountdown = 0;
 let inCutScene = false;
 let transition = null;
+
+let story = null;
 
 
 window.addEventListener("load", () => {
@@ -31,7 +35,11 @@ window.addEventListener("load", () => {
     chuteTop = new TiledImage("./img/NES - The Legend of Zelda - ChuteTop.png",
     2, 1, 150, true, 4);
     chuteTop.setPaused(false);
-
+    
+    triforce = new TiledImage("./img/NES - The Legend of Zelda - Title - Triforce.png",
+    4, 1, 200, true, 4);
+    triforce.setPaused(false);
+    
     ChuteAnim();
     
     /*let music = new Audio("./sound/01 - Intro.mp3");
@@ -42,7 +50,9 @@ window.addEventListener("load", () => {
     music.play();*/
 
     window.addEventListener("keypress",ResetStory)
-    window.addEventListener("mousemove",ResetStory)
+    window.addEventListener("click",ResetStory)
+
+    
 
     window.requestAnimationFrame(tick);
 });
@@ -66,10 +76,16 @@ const tick = timeSpan =>{
     if(titleScreen.complete){
         ctx.drawImage(titleScreen,0,0, canvas.width, canvas.height);
     }
+
     chuteTop.tick(384, 688, ctx);
+    triforce.tick(510, 334, ctx);
+
 
     if(transition !=null){
         transition.tick();
+    }
+    if(story !=null){
+        story.tick(deltaTick);
     }
 
     for (let i = 0; i < spriteList.length; i++) {
@@ -99,7 +115,10 @@ const FadeToBlack = (op, limit) =>{
         setTimeout(() =>{FadeToBlack(op, 1);}, 1000);
     }
 
-    
+    if(op > 1){
+        story = new Story(canvas);
+    }
+
 }
 
 
@@ -108,5 +127,8 @@ const ResetStory = () =>{
     inCutScene = false;
     if(transition !=null){
         transition.alive = false;
+    }
+    if(story !=null){
+        story.alive = false;
     }
 }
