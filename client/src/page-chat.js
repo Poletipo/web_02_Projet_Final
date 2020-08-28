@@ -1,4 +1,7 @@
 import {registerCallbacks, sendMessage, signout, chatMessageLoop} from './chat-api';
+import ChatIntro from "./Sprite/ChatIntro";
+import Transition from "./Sprite/Transition"
+import Link from './Sprite/Link';
 
 let spriteList = [];
 
@@ -6,7 +9,7 @@ let canvas = null;
 let ctx = null;
 
 let background = new Image();
-let messages = [];
+let introDone = false;
 
 window.addEventListener("load", () => {
     document.querySelector("textarea").onkeyup = function (evt) {
@@ -26,6 +29,9 @@ window.addEventListener("load", () => {
     ctx.mozImageSmoothingEnabled = false;
     ctx.imageSmoothingEnabled = false;
     
+    spriteList.push(new ChatIntro(ctx, canvas));
+
+
     window.requestAnimationFrame(tick);
 })
 
@@ -61,12 +67,23 @@ const tick = timeSpan =>{
     lastTime = timeSpan;
 
     ctx.drawImage(background,0,0, 1024, 896);
-
+    
+    if(introDone){
+        spriteList.push(new Transition(500));
+        background.src = "./img/NES - The Legend of Zelda - FirstLevel.png"
+        spriteList.push(new Link(288,400, ctx, 0));
+        introDone = false;
+    }
 
     for (let i = 0; i < spriteList.length; i++) {
         const element = spriteList[i];
         let alive = element.tick(deltaTick);
     
+        if(spriteList[i].name == "ChatIntro" && !alive){
+            introDone = true;
+        }
+
+
         if (!alive) {
             spriteList.splice(i, 1);
             i--;
