@@ -60,15 +60,15 @@ const memberListUpdate = members => {
     
     if(OnlyOnce){
         for(let i = 0; i < members.length ; i++){
-            let disconected = true;
             let existingName = false;
             for(let j = 0; j < spriteList.length ; j++){
-                    if(members[i] == spriteList[j].PlayerName){
-                        existingName = true;
-                    }
-                    
+                if(members[i] == spriteList[j].PlayerName){
+                    existingName = true;
+                }
+                
+                    let disconected = true;
                     if(spriteList[j].PlayerName != null){
-                        for(let k = 0;k< members.length ; k++){
+                        for(let k = 0;k < members.length ; k++){
                             if(spriteList[j].PlayerName == members[k]){
                                 disconected = false;
                             }
@@ -77,14 +77,13 @@ const memberListUpdate = members => {
                         disconected = false;
                     }
                     if(disconected){
-                        console.log(spriteList[j].PlayerName);
                         spriteList.splice(j, 1);
                         j--;   
                     }
                 }
                 
                 if(!existingName){
-                    console.log(members[i]);
+                    //console.log(members[i]);
                     spriteList.push(new Monster(members[i], ctx, canvas));
                 }
         }

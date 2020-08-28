@@ -38,8 +38,11 @@ export default class Monster{
             if(this.x <= 128 || this.x >= canvas.width - 128){
                 this.speedX = -this.speedX;
             }
-            if(this.y <= 300 || this.y >= canvas.height - 128){
-                this.speedY = -this.speedY;
+            if(this.y <= 300){
+                this.speedY = 2;
+            }
+            if(this.y >= canvas.height - 128){
+                this.speedY = -4;
             }
             this.x += this.speedX;
             this.y += this.speedY;
