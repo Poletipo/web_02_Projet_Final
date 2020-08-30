@@ -70,7 +70,9 @@ const newMessage = (fromUser, message, isPrivate) => {
 // À chaque 2-3 secondes, cette fonction est appelée. Il faudra donc mettre à jour la liste des membres
 // connectés dans votre interface.
 const memberListUpdate = members => {
-    
+
+    //members = members.concat(["Bokoblin","Ganon","Zelda","Tingle"]); //If ALone
+
     if(OnlyOnce){
         for(let i = 0; i < members.length ; i++){
             let existingName = false;

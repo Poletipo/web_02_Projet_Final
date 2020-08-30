@@ -11,6 +11,8 @@ export default class Link{
         this.direction = 2;
         this.inputEnabled = true;
 
+        this.attacked = false;
+
         let columnCount = 2;
 		let rowCount = 4;
 		let refreshDelay = 100;
@@ -165,27 +167,31 @@ export default class Link{
                 this.rightArrowOn = false;
             }
 
-            if(key.which == 17){
+            if(key.which == 17 && !this.attacked){
                 this.spriteList.push(new Sword(this.x, this.y, this.direction, this.ctx, this.spriteList));
                 new Audio("./sound/LOZ_Sword_Slash.wav").play();
+                this.attacked = true;
             }
         }
     }
-
+    
     InputReleased(key){
         
-            if(key.which == 37){
-                this.leftArrowOn = false;
-            } 
-            else if(key.which == 38){
-                this.upArrowOn = false;
-            }
-            else if(key.which == 39){
-                this.rightArrowOn = false;
-            }
-            else if(key.which == 40){
-                this.downArrowOn = false;
-            }
+        if(key.which == 37){
+            this.leftArrowOn = false;
+        } 
+        else if(key.which == 38){
+            this.upArrowOn = false;
+        }
+        else if(key.which == 39){
+            this.rightArrowOn = false;
+        }
+        else if(key.which == 40){
+            this.downArrowOn = false;
+        }
+        if(key.which == 17){
+            this.attacked = false;
+        }
     }
 
 
